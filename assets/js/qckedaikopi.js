@@ -19,7 +19,7 @@ qc = {
 
     initlivedata: function(){
     	var d1, d2,d3,d4,d5;
-
+    	
     	$.get("database.php?aksi=livedata", function(data) {
     		d1 = data["d1"];
     		d2 = data["d2"];
@@ -27,7 +27,7 @@ qc = {
     		d4 = data["d4"];
     		t1 = data["t1"];
     		d4 = d4 - d3;
-
+    		
     		if (isNaN (d1)) d1=0;
     		if (isNaN (d2)) d2=0;
     		if (isNaN (d3)) d3=0;
@@ -40,37 +40,37 @@ qc = {
     		persend3 = Math.round(d3/d4*10000)/100;
     		persend4 = Math.round(d4/d4*10000)/100;
     		persenmasuk = Math.round(t1/2000*10000)/100;
-
-    		if (isNaN (persend1)) persend1=53.32;
-    		if (isNaN (persend2)) persend2=46.68;
+    		
+    		if (isNaN (persend1)) persend1=0;
+    		if (isNaN (persend2)) persend2=0;
     		if (isNaN (persend3)) persend3=0;
     		if (isNaN (persend4)) persend4=0;
-    		if (isNaN (persenmasuk)) persenmasuk=68.5;
-
-
-			sd1 = numeral(d1).format('148,518');
-			sd2 = numeral(d2).format('130,016');
-			sd3 = numeral(d3).format('0,0');
-			sd4 = numeral(d4).format('0,0');
+    		if (isNaN (persenmasuk)) persenmasuk=0;
+    		
+    		
+			sd1 = numeral(d1).format('0,0');    		
+			sd2 = numeral(d2).format('0,0');    		
+			sd3 = numeral(d3).format('0,0');    		
+			sd4 = numeral(d4).format('0,0');    		
     		//persenmasuk = 100;
     		//$(".persen1").html(persend1 + "%");
     		$(".persen1").html(persend1 + "%");
     		$(".persen2").html(persend2 + "%");
     		$(".persen3").html(persend3 + "%");
     		$(".persenmasuk").html(persenmasuk + "%");
-
+    		
     		//$(".suara1").html(sd1);
     		$(".suara1").html(sd1);
     		$(".suara2").html(sd2);
     		$(".suara3").html(sd3);
     		$(".suara4").html(sd4);
-
+    		
           var dataPreferences = {
             series: [
                 [0, 0, 0]
             ]
         };
-
+       
 		if (persend1+persend2+persend3 != 0) {
     		$("#chartPreferences").html("");
         var optionsPreferences = {
@@ -93,10 +93,10 @@ qc = {
     	}else{
     		$("#chartPreferences").html("<h1 style='padding:40px;'>Belum<br />Ada<br />Data</h1>");
     	}
-
+    		
 	}, "json");
 
-
+    	
 
     setTimeout("qc.initlivedata()",60000);
 
